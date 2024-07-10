@@ -27,9 +27,9 @@ const checkRegister = () => {
 
   if (cashInt < price) {
     alert('Customer does not have enough money to purchase the item');
-    return;
   } else if (cashInt === price) {
     displayChangeDue.innerText = 'No change due - customer paid with exact cash';
+    return;
   } else if (cash.value === '') {
     return;
   }
