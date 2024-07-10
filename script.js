@@ -65,10 +65,10 @@ const checkRegister = () => {
 
   let remainingCid = cidCopy.reduce((total, sum) => total + sum[1], 0);
   if (remainingCid === 0) {
-    displayChangeDue.innerHTML = 'Status: CLOSED ' + changeArr.map(cash => `${cash[0]}: $${cash[1].toFixed(2)}`).join(' ');
-    cid = cid.map(denom => [denom[0], 0]);
+    displayChangeDue.innerHTML = 'Status: CLOSED ' + changeArr.map((cash) => `${cash[0]}: $${cash[1].toFixed(2)}`).join(' ');
+    cid = cid.map((denom) => [denom[0], 0]);
   } else {
-    displayChangeDue.innerHTML = 'Status: <b>OPEN</b> <br><br>'+ changeArr.map(cash => `<b>${cash[0]}</b>: $${cash[1].toFixed(2)} <br>`).join(' ');
+    displayChangeDue.innerHTML = 'Status: <b>OPEN</b> <br><br>'+ changeArr.map((cash)=> `<b>${cash[0]}</b>: $${cash[1].toFixed(2)} <br>`).join(' ');
     cid = cidCopy;
   }
 
