@@ -5,6 +5,11 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+  height: auto !important;
+  min-height: 100vh;
+}
+
 #container {
   width: 33%;
   margin-left: auto;
