@@ -13,15 +13,15 @@ let cid = [
   ['FIVE', 55],
   ['TEN', 20],
   ['TWENTY', 60],
-  ['ONE HUNDRED', 100]
+  ['ONE HUNDRED', 100],
 ];
 
 document.getElementById('price').innerHTML = `<b>Price:</b> ${price}`;
 
 const checkRegister = () => {
-  let cashInt = parseFloat(cash.value);
+  const cashInt = parseFloat(cash.value);
   let change = Number((cashInt - price).toFixed(2));
-  let totalCid = Number(cid.reduce((total, sum) => total + sum[1], 0).toFixed(2));
+  const totalCid = Number(cid.reduce((total, sum) => total + sum[1], 0).toFixed(2));
 
   document.getElementById('change').innerHTML = `<b>Change:</b> ${change}`;
 
@@ -42,10 +42,10 @@ const checkRegister = () => {
 
   const denominations = [100, 20, 10, 5, 1, 0.25, 0.10, 0.05, 0.01];
   const denominationNames = ['ONE HUNDRED', 'TWENTY', 'TEN', 'FIVE', 'ONE', 'QUARTER', 'DIME', 'NICKEL', 'PENNY'];
-  let changeArr = [];
-  let cidCopy = [...cid];
+  const changeArr = [];
+  const cidCopy = [...cid];
 
-  for (let i = 0; i < denominations.length; i++) {
+  for (let i = 0; i < denominations.length; i += 1) {
     let totalDenom = 0;
     while (change >= denominations[i] && cidCopy[cidCopy.length - 1 - i][1] > 0) {
       cidCopy[cidCopy.length - 1 - i][1] = Number((cidCopy[cidCopy.length - 1 - i][1] - denominations[i]).toFixed(2));
@@ -63,21 +63,19 @@ const checkRegister = () => {
     return;
   }
 
-  let remainingCid = cidCopy.reduce((total, sum) => total + sum[1], 0);
+  const remainingCid = cidCopy.reduce((total, sum) => total + sum[1], 0);
   if (remainingCid === 0) {
     displayChangeDue.innerHTML = 'Status: CLOSED ' + changeArr.map((cash) => `${cash[0]}: $${cash[1].toFixed(2)}`).join(' ');
     cid = cid.map((denom) => [denom[0], 0]);
   } else {
-    displayChangeDue.innerHTML = 'Status: <b>OPEN</b> <br><br>'+ changeArr.map((cash)=> `<b>${cash[0]}</b>: $${cash[1].toFixed(2)} <br>`).join(' ');
+    displayChangeDue.innerHTML = 'Status: <b>OPEN</b> <br><br>' + changeArr.map((cash) => `<b>${cash[0]}</b>: $${cash[1].toFixed(2)} <br>`).join(' ');
     cid = cidCopy;
   }
-
-  displayCashInDrawer();
-}
-
+};
 const displayCashInDrawer = () => {
-  displayCid.innerHTML = '<h4>Cash in Drawer:</h4>' + cid.map(cash => `${cash[0]}: $${cash[1].toFixed(2)} <br>`).reverse().join('');
-}
+  displayCid.innerHTML = '<h4>Cash in Drawer:</h4>' + cid.map((cash) => `${cash[0]}: $${cash[1].toFixed(2)} <br>`).reverse().join('');
+  displayCashInDrawer();
+};
 
 window.onload = displayCashInDrawer;
 
