@@ -30,7 +30,6 @@ const checkRegister = () => {
     return;
   } else if (cashInt === price) {
     displayChangeDue.innerText = 'No change due - customer paid with exact cash';
-    return;
   } else if (cash.value === '') {
     return;
   }
@@ -65,15 +64,15 @@ const checkRegister = () => {
 
   const remainingCid = cidCopy.reduce((total, sum) => total + sum[1], 0);
   if (remainingCid === 0) {
-    displayChangeDue.innerHTML = 'Status: CLOSED ' + changeArr.map((cash) => `${cash[0]}: $${cash[1].toFixed(2)}`).join(' ');
+    displayChangeDue.innerHTML = changeArr.map((cash) => `${cash[0]}: $${cash[1].toFixed(2)}`).join(' ');
     cid = cid.map((denom) => [denom[0], 0]);
   } else {
-    displayChangeDue.innerHTML = 'Status: <b>OPEN</b> <br><br>' + changeArr.map((cash) => `<b>${cash[0]}</b>: $${cash[1].toFixed(2)} <br>`).join(' ');
+    displayChangeDue.innerHTML = changeArr.map((cash) => `<b>${cash[0]}</b>: $${cash[1].toFixed(2)} <br>`).join(' ');
     cid = cidCopy;
   }
 };
 const displayCashInDrawer = () => {
-  displayCid.innerHTML = '<h4>Cash in Drawer:</h4>' + cid.map((cash) => `${cash[0]}: $${cash[1].toFixed(2)} <br>`).reverse().join('');
+  displayCid.innerHTML = cid.map((cash) => `${cash[0]}: $${cash[1].toFixed(2)} <br>`).reverse().join('');
   displayCashInDrawer();
 };
 
